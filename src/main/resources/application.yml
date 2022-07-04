@@ -1,0 +1,33 @@
+# Just for clarity and not required to be set since default port is '8080'.
+server:
+  port: 8080
+
+# Register self as a client to Eureka server.
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+# Must match the name of the configuration files stored in the config server. Includes profile specific configuration files.
+spring:
+  application:
+    name: gateway-server
+
+# Defaults to 'http://localhost:8888' if discovery is not enabled.
+  config:
+    import: 'optional:configserver:'
+
+# Use the Eureka server to find other config server instances so that URL does not have to be set in 'spring.config.import'.
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+
+# Routes    
+    gateway:
+      routes:
+      - id: booking-app-route
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/booking/**
