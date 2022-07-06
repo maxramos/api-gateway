@@ -31,3 +31,7 @@ spring:
         uri: http://localhost:9080/
         predicates:
         - Path=/booking/**
+        - Method=GET,POST,PUT,DELETE
+        filters:
+        - AddRequestHeader=X-Request-Color, red
+        - AddResponseHeader=X-Response-Color, blue
