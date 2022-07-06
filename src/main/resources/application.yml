@@ -25,13 +25,13 @@ spring:
         service-id: config-server
 
 # Routes    
-    gateway:
-      routes:
-      - id: booking-app-route
-        uri: http://localhost:9080/
-        predicates:
-        - Path=/booking/**
-        - Method=GET,POST,PUT,DELETE
-        filters:
-        - AddRequestHeader=X-Request-Color, red
-        - AddResponseHeader=X-Response-Color, blue
+#    gateway:
+#      routes:
+#      - id: booking-app-route
+#        uri: http://localhost:9080/
+#        predicates:
+#        - Path=/booking/**
+#        - Method=GET,POST,PUT,DELETE
+#        filters:
+#        - AddRequestHeader=X-Request-Color, red
+#        - AddResponseHeader=X-Response-Color, blue
