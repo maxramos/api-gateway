@@ -1,8 +1,8 @@
-# Set port for gateway server peer2.
+# Set port for api-gateway peer2.
 server:
   port: 8081
 
-# Register self as a client to discovery server peer1 and peer2.
+# Register self as a client to service-registry peer1 and peer2.
 eureka:
   client:
     service-url:
