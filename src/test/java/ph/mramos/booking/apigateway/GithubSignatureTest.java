@@ -14,15 +14,11 @@ public class GithubSignatureTest {
 		System.out.println("Raw Body:");
 		System.out.println("'" + rawBody + "'");
 
-		String hashedBody = hmacSha256(rawBody);
+		String hashedBody = Hashing.hmacSha256("secret-key".getBytes(StandardCharsets.UTF_8)) // Replace with actual secret key.
+				.hashString(rawBody, StandardCharsets.UTF_8)
+				.toString();
 		System.out.println("Hashed Body:");
 		System.out.println(hashedBody);
-	}
-
-	private String hmacSha256(String data) {
-		return Hashing.hmacSha256("secret-key".getBytes(StandardCharsets.UTF_8)) // Replace with actual secret key.
-				.hashString(data, StandardCharsets.UTF_8)
-				.toString();
 	}
 
 }

@@ -49,15 +49,11 @@ public class Application {
 		githubSignedBody = githubSignedBody.substring(7); // Drop the 'sha256=' prefix.
 
 		String rawBody = exchange.getAttribute("cachedRequestBodyObject");
-		String hashedBody = hmacSha256(rawBody);
+		String hashedBody = Hashing.hmacSha256(githubSecretKey.getBytes(StandardCharsets.UTF_8))
+				.hashString(rawBody, StandardCharsets.UTF_8)
+				.toString();
 
 		return githubSignedBody.equals(hashedBody);
-	}
-
-	private String hmacSha256(String data) {
-		return Hashing.hmacSha256(githubSecretKey.getBytes(StandardCharsets.UTF_8))
-				.hashString(data, StandardCharsets.UTF_8)
-				.toString();
 	}
 
 }
